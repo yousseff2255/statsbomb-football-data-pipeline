@@ -1,4 +1,3 @@
-```markdown
 # 📐 Design Decisions – StatsBomb Football Data Pipeline
 
 This document explains the architectural and engineering decisions behind the StatsBomb pipeline.  
@@ -64,6 +63,7 @@ Reasons:
 - Supports raw → processed → curated layering
 
 Layering strategy:
+
 ```
 
 s3://bucket/statsbomb-raw/ (Raw Zone)
@@ -97,6 +97,7 @@ Glue provides:
 - Scalable JSON flattening
 
 Spark enables:
+
 - Exploding nested arrays
 - UDF-based subtype prioritization
 - Efficient Parquet writing
@@ -116,6 +117,7 @@ Parquet advantages:
 - Reduced Snowflake compute costs
 
 This reduces both:
+
 - Storage costs
 - Query latency
 
@@ -167,11 +169,13 @@ Dimensional modeling supports:
 ## 8️⃣ Why a Unified FACT_EVENTS Table?
 
 Alternative:
+
 - Separate tables for Passes, Shots, Dribbles, etc.
 
 We intentionally avoided this.
 
 ### Decision:
+
 Use a **single sparse polymorphic fact table**.
 
 ### Why?
@@ -182,6 +186,7 @@ Use a **single sparse polymorphic fact table**.
 - Easier incremental loading
 
 Tradeoff:
+
 - Some NULL columns
 
 But Snowflake compresses sparse columns efficiently, so storage cost is minimal.
@@ -268,10 +273,12 @@ Feature magnitudes vary significantly:
 - Shot Quality (~0.1)
 
 Without scaling:
+
 - Larger features dominate distance
 - Clusters become biased
 
 StandardScaler normalizes:
+
 - Mean = 0
 - Variance = 1
 
@@ -344,6 +351,3 @@ It can serve as a foundation for:
 - Scouting automation
 - Tactical analytics platforms
 - Football intelligence products
-```
-
----
