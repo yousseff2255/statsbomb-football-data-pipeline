@@ -1,0 +1,16 @@
+pyspark
+awsglue-local
+snowflake-connector-python
+snowflake-sqlalchemy
+dagster
+dagit
+dbt-core
+dbt-snowflake
+pandas
+numpy
+scikit-learn
+streamlit
+matplotlib
+seaborn
+python-dotenv
+boto3

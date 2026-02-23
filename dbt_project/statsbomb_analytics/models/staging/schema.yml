@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_events
+    columns:
+      - name: event_id
+        data_tests:
+          - unique
+          - not_null
+      - name: match_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_matches')
+              field: match_id
+      - name: shot_xg
+        data_tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1.0
+
+  - name: stg_matches
+    columns:
+      - name: match_id
+        data_tests:
+          - unique
+          - not_null
+      - name: home_score
+        data_tests:
+          # Replaced expression_is_true with accepted_range
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+  - name: stg_players
+    columns:
+      - name: player_id
+        data_tests:
+          - unique
+          - not_null

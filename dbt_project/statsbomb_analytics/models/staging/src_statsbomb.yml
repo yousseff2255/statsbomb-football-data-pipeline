@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: statsbomb
+    database: STATSBOMB_DB
+    schema: PROD_WH
+    tables:
+      - name: fact_events
+      - name: dim_match
+      - name: dim_player
+      - name: dim_team
+      - name: dim_event_type
+      - name: fact_lineups

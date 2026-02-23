@@ -1,0 +1,1 @@
+select * from {{ source('statsbomb', 'dim_event_type') }}

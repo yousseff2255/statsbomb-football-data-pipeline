@@ -1,0 +1,27 @@
+name: "statsbomb_analytics"
+version: "1.0.0"
+config-version: 2
+
+profile: "statsbomb_analytics"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  statsbomb_analytics:
+    # Staging Layer (Views) - Cleans raw data
+    staging:
+      +materialized: view
+      +schema: staging
+
+    # Marts Layer (Tables) - Final business logic
+    marts:
+      +materialized: table
+      +schema: marts
