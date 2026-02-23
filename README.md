@@ -1,4 +1,3 @@
-```markdown
 # ⚽ StatsBomb Football Data Pipeline
 
 A fully automated, end-to-end big data pipeline that ingests raw nested football event data from StatsBomb Open Data, transforms it into a structured star-schema warehouse, builds analytical marts, and powers machine learning & BI applications.
@@ -27,6 +26,7 @@ This project implements a **production-style ELT architecture** that:
 ---
 
 ## 🏗 Architecture
+
 ```
 
 StatsBomb GitHub
@@ -66,6 +66,7 @@ Power BI + ML + Streamlit
 ### Star Schema
 
 **Grain of Fact Tables:**
+
 - Individual match events
 - Lineup entries
 
@@ -102,6 +103,7 @@ The transformation job:
 - Writes structured Parquet files back to S3
 
 Key techniques:
+
 - Array explosion
 - Regex-based match_id extraction
 - Sparse column handling
@@ -114,6 +116,7 @@ Key techniques:
 dbt models create analytics-ready marts:
 
 ### fct_player_match_stats
+
 - Passes
 - Progressive passes
 - Goals
@@ -121,22 +124,26 @@ dbt models create analytics-ready marts:
 - Counterpress actions
 
 ### fct_team_match_stats
+
 - Match results
 - xG difference
 - Possession %
 - Pressing intensity
 
 ### fct_passing_network
+
 - Passer → Recipient edges
 - Node spatial positioning
 - Pass count thresholds
 
 ### mart_player_season_summary
+
 - Shot conversion %
 - Pass completion %
 - Goals - xG delta
 
 Data quality is enforced using:
+
 - not_null tests
 - unique combination tests
 - accepted range validations
@@ -153,6 +160,7 @@ The pipeline is fully automated:
 4. Run dbt models
 
 Scheduled to run monthly:
+
 ```
 
 0 3 1 \* \* (Africa/Cairo timezone)
@@ -160,6 +168,7 @@ Scheduled to run monthly:
 ```
 
 Dagster provides:
+
 - Observability
 - Retry control
 - Dependency chaining
@@ -200,11 +209,12 @@ The scouting app:
 - Returns top 5 most tactically similar managers
 
 Distance metric:
+
 ```
 
 np.linalg.norm(target_vector - candidate_vector)
 
-````
+```
 
 ---
 
@@ -213,17 +223,20 @@ np.linalg.norm(target_vector - candidate_vector)
 Includes:
 
 ### 1️⃣ Season Overview
+
 - Goals
 - xG difference
 - Possession trends
 - Shot efficiency
 
 ### 2️⃣ Match Analysis
+
 - Pass comparison
 - Pressure comparison
 - Player contributions
 
 ### 3️⃣ Passing Network
+
 - Node centrality
 - Edge frequency
 - Tactical clusters
@@ -244,10 +257,11 @@ Includes:
 ## 🚀 How to Run (Local Dev Setup)
 
 ### 1️⃣ Create virtual environment
+
 ```bash
 python -m venv venv
 source venv/bin/activate
-````
+```
 
 ### 2️⃣ Install dependencies
 
@@ -286,9 +300,3 @@ StatsBomb Open Data
 ## 📜 License
 
 Educational / Research Purposes
-
-```
-
-
-
-```
